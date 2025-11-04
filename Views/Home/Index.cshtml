@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embelisa</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/embelisa-home.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="topo">
+            <div class="logo">
+                <div class="logo-icone">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h1>Embelisa</h1>
+            </div>
+            <h2 class="subtitulo">Sistema de Gestão Condominial Premium</h2>
+            <p class="descricao">
+                Plataforma sofisticada e inteligente para gerenciamento completo do seu condomínio. 
+                Controle de acesso, gestão financeira, vistorias digitais e muito mais.
+            </p>
+        </header>
+
+        <main class="opcoes">
+            <div class="card">
+                <div class="card-icone">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Acesso Administrativo</h3>
+                <p>Painel completo para gerenciar moradores, finanças, vistorias, comunicações e relatórios detalhados.</p>
+                <button class="btn btn-rosa" onclick="window.location.href='/Account/Login?tipo=admin'">Acessar como Administrador</button>
+            </div>
+
+            <div class="card">
+                <div class="card-icone">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Registro de Visitante</h3>
+                <p>Cadastre-se rapidamente para registrar sua visita ao condomínio Embelisa de forma prática e segura.</p>
+                <button class="btn btn-cinza" onclick="window.location.href='/Account/Register?tipo=visitante'">Registrar Visita</button>
+            </div>
+        </main>
+
+        <section class="funcionalidades">
+            <p class="titulo-sec">PRINCIPAIS FUNCIONALIDADES</p>
+            <div class="tags">
+                <span>Controle de Acesso</span>
+                <span>Gestão Financeira</span>
+                <span>Vistorias Digitais</span>
+                <span>Comunicação Interna</span>
+                <span>Relatórios Avançados</span>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a2e0ad5e65.js" crossorigin="anonymous"></script>
+</body>
+</html>

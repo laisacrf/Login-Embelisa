@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #fce7ec, #fff5f3);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 1100px;
+    padding: 60px 30px;
+}
+
+/* === LOGO === */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-icone {
+    background: #f4cfd7;
+    color: #333;
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #3a2b2e;
+}
+
+.subtitulo {
+    font-weight: 500;
+    font-size: 18px;
+    color: #4a4a4a;
+    margin-top: 15px;
+}
+
+.descricao {
+    color: #555;
+    max-width: 700px;
+    margin: 10px auto 60px;
+    line-height: 1.6;
+}
+
+/* === CARDS === */
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    width: 380px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-icone {
+    background: #f4cfd7;
+    color: #3a2b2e;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 26px;
+}
+
+.card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* === FORMULARIOS === */
+.card-form {
+    width: 400px;
+    margin: 0 auto 30px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.formulario label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.formulario input,
+.formulario select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-family: inherit;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: none;
+    border-color: #f4cfd7;
+}
+
+/* === BOTÕES === */
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-rosa {
+    background: #f4cfd7;
+    color: #3a2b2e;
+}
+
+.btn-rosa:hover {
+    background: #e7b4bd;
+}
+
+.btn-cinza {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+}
+
+.btn-cinza:hover {
+    background: #f0f0f0;
+}
+
+/* === LINKS === */
+.texto-link, .texto-voltar {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.link-rosa {
+    color: #c84c6e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-voltar {
+    color: #777;
+    text-decoration: none;
+}
+
+.link-rosa:hover,
+.link-voltar:hover {
+    text-decoration: underline;
+}
+
+/* === FUNCIONALIDADES === */
+.funcionalidades {
+    margin-top: 80px;
+}
+
+.titulo-sec {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.tags span {
+    background: #fff;
+    border-radius: 25px;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #444;
+    border: 1px solid #eee;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+
+    .descricao {
+        padding: 0 10px;
+    }
+}
