@@ -1,0 +1,35 @@
+@model CondominioApp.Models.ContaMensal
+@{
+    ViewData["Title"] = "Detalhes da Conta";
+}
+<link rel="stylesheet" href="~/css/conta.css" />
+
+<div class="container">
+    <h1>Detalhes da Conta</h1>
+
+    <div class="details-box">
+        <p><strong>Descrição:</strong> @Model.Descricao</p>
+        <p><strong>Valor:</strong> R$ @Model.Valor.ToString("F2")</p>
+        <p><strong>Vencimento:</strong> @Model.DataVencimento.ToShortDateString()</p>
+    </div>
+
+    @if (string.IsNullOrEmpty(Model.PixCodigo))
+    {
+        <form asp-action="GerarPix" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-pix">Gerar PIX</button>
+        </form>
+    }
+    else
+    {
+        <div class="qr-section">
+            <h3>Pagamento PIX</h3>
+            <p>Escaneie o QR Code abaixo para realizar o pagamento:</p>
+            <img src="@Url.Action("GerarQr", "Conta", new { payload = Model.PixCodigo })" alt="QR Code PIX" />
+        </div>
+    }
+
+    <div style="margin-top: 25px;">
+        <a href="@Url.Action("Index", "Conta")" class="btn">Voltar</a>
+    </div>
+</div>

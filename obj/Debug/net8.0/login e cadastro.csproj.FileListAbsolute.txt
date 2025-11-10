@@ -193,3 +193,5 @@ C:\Users\430465624\Documents\login e cadastro\bin\Debug\net8.0\runtimes\win-arm6
 C:\Users\430465624\Documents\login e cadastro\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\430465624\Documents\login e cadastro\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\430465624\Documents\login e cadastro\obj\Debug\net8.0\login e cadastro.sourcelink.json
+C:\Users\430465624\Documents\login e cadastro\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\430465624\Documents\login e cadastro\bin\Debug\net8.0\QRCoder.dll

@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets\\login e cadastro.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\css\\conta.css",
+      "PackagePath": "staticwebassets\\css\\conta.css"
+    },
+    {
+      "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\css\\dashboard.css"
+    },
+    {
       "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\css\\embelisa-home.css",
       "PackagePath": "staticwebassets\\css\\embelisa-home.css"
     },
     {
       "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\css\\embelisa-inicial.css",
       "PackagePath": "staticwebassets\\css\\embelisa-inicial.css"
+    },
+    {
+      "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\css\\inadimplencia.css",
+      "PackagePath": "staticwebassets\\css\\inadimplencia.css"
     },
     {
       "Id": "C:\\Users\\430465624\\Documents\\login e cadastro\\wwwroot\\favicon.ico",

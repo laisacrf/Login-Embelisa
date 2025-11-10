@@ -18,3 +18,4 @@ namespace CondominioApp.Models
         public string Telefone { get; set; }
     }
     }
+

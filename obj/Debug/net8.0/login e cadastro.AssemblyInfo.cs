@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("login e cadastro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+709f0fd056e4507907acc385d1bf6eb014e7fbea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d32c570a63644a249d47cba9cb63f73a7c3e9253")]
 [assembly: System.Reflection.AssemblyProductAttribute("login e cadastro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("login e cadastro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

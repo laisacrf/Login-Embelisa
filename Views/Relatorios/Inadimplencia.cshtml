@@ -1,0 +1,117 @@
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Relatório de Inadimplência";
+}
+
+<section class="inadimplencia-relatorio">
+    <h1>Relatório de Inadimplência</h1>
+
+    <a asp-controller="Conta" asp-action="Index" class="voltar-btn">⬅️ Voltar para Contas</a>
+
+    <h2>Adicionar Novo Cliente</h2>
+    <form id="formCliente">
+        <label>Nome do Cliente:</label>
+        <input type="text" id="nome" required />
+
+        <label>Data de Vencimento:</label>
+        <input type="date" id="vencimento" required />
+
+        <label>Valor (R$):</label>
+        <input type="number" id="valor" min="0" step="0.01" required />
+
+        <label>Dias em Atraso:</label>
+        <input type="number" id="atraso" min="0" required />
+
+        <label>Status:</label>
+        <select id="status">
+            <option value="Em cobrança">Em cobrança</option>
+            <option value="Sem contato">Sem contato</option>
+            <option value="Negociação">Negociação</option>
+            <option value="Encaminhado ao jurídico">Encaminhado ao jurídico</option>
+        </select>
+
+        <button type="submit">Adicionar Cliente</button>
+    </form>
+
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Vencimento</th>
+                <th>Valor (R$)</th>
+                <th>Dias em Atraso</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="dados"></tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Totais</td>
+                <td id="totalValor">0</td>
+                <td colspan="2" id="totalClientes"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="resumo">
+        <h3>Resumo Geral</h3>
+        <p><strong>Total de clientes inadimplentes:</strong> <span id="qtdClientes"></span></p>
+        <p><strong>Valor total em aberto:</strong> R$ <span id="valorTotal"></span></p>
+        <p><strong>Índice de inadimplência:</strong> <span id="percentual"></span>%</p>
+        <button onclick="window.print()">🖨️ Imprimir Relatório</button>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    const clientes = [];
+    const tabela = document.getElementById("dados");
+    const totalValor = document.getElementById("totalValor");
+    const totalClientes = document.getElementById("totalClientes");
+    const qtdClientes = document.getElementById("qtdClientes");
+    const valorTotal = document.getElementById("valorTotal");
+    const percentual = document.getElementById("percentual");
+
+    function atualizarTabela() {
+        tabela.innerHTML = "";
+        let total = 0;
+
+        clientes.forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${c.nome}</td>
+                <td>${new Date(c.vencimento).toLocaleDateString("pt-BR")}</td>
+                <td>${c.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</td>
+                <td>${c.atraso}</td>
+                <td>${c.status}</td>
+            `;
+            tabela.appendChild(tr);
+            total += c.valor;
+        });
+
+        totalValor.innerText = total.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+        totalClientes.innerText = `${clientes.length} clientes`;
+        qtdClientes.innerText = clientes.length;
+        valorTotal.innerText = total.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+
+        const totalFaturado = 24000; // valor total faturado no mês
+        percentual.innerText = ((total / totalFaturado) * 100).toFixed(2);
+    }
+
+    document.getElementById("formCliente").addEventListener("submit", e => {
+        e.preventDefault();
+        const novo = {
+            nome: document.getElementById("nome").value,
+            vencimento: document.getElementById("vencimento").value,
+            valor: parseFloat(document.getElementById("valor").value),
+            atraso: parseInt(document.getElementById("atraso").value),
+            status: document.getElementById("status").value
+        };
+        clientes.push(novo);
+        atualizarTabela();
+        e.target.reset();
+    });
+
+    atualizarTabela();
+</script>
+}

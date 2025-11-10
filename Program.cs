@@ -1,11 +1,4 @@
-using CondominioApp.Context;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Configurar SQLite
-builder.Services.AddDbContext<CondominioContext>(options =>
-    options.UseSqlite("Data Source=Condominio.db"));
 
 builder.Services.AddControllersWithViews();
 
@@ -22,8 +15,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
+// 🔹 Página inicial = Index2.cshtml
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Inicial}/{id?}");
+    pattern: "{controller=Home}/{action=Inicial}/{id?}"
+);
 
-app.Run(); // 👈 ESSA LINHA É O QUE FAZ O SERVIDOR FICAR DE PÉ
+app.Run();

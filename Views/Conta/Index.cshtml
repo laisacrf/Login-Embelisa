@@ -1,0 +1,173 @@
+@{
+    ViewData["Title"] = "Contas dos Moradores";
+}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+<div class="container">
+    <h1>💰 Controle de Contas do Condomínio</h1>
+
+    <div class="form">
+        <input type="text" id="morador" placeholder="Nome do Morador">
+        <input type="text" id="descricao" placeholder="Descrição">
+        <input type="number" id="valor" placeholder="Valor (R$)">
+        <select id="mes">
+            <option value="">Mês</option>
+            <option>Janeiro</option><option>Fevereiro</option><option>Março</option>
+            <option>Abril</option><option>Maio</option><option>Junho</option>
+            <option>Julho</option><option>Agosto</option><option>Setembro</option>
+            <option>Outubro</option><option>Novembro</option><option>Dezembro</option>
+        </select>
+        <input type="date" id="vencimento">
+        <button onclick="adicionarConta()">Adicionar</button>
+    </div>
+
+    <table id="tabelaContas">
+        <thead>
+            <tr>
+                <th>Morador</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Mês</th>
+                <th>Vencimento</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var conta in Model)
+            {
+                <tr data-id="@conta.Id">
+                    <td>@conta.Morador</td>
+                    <td>@conta.Descricao</td>
+                    <td>R$ @conta.Valor</td>
+                    <td>@conta.Mes</td>
+                    <td>@conta.Vencimento.ToString("dd/MM/yyyy")</td>
+                    <td class="@(conta.Pago ? "status-pago" : "status-pendente")">
+                        @(conta.Pago ? "Pago" : "Pendente")
+                    </td>
+                    <td>
+                        <button onclick="gerarQRCode('@conta.Descricao', @conta.Valor)">QR</button>
+                        <button onclick="marcarPago(@conta.Id, this)">Pagar</button>
+                        <button onclick="excluirConta(@conta.Id, this)">Excluir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="qrBox" style="display:none">
+        <h3>PIX Dinâmico</h3>
+        <div id="qrcode"></div>
+        <p id="valorPix"></p>
+        <button onclick="copiarCodigo()">Copiar código PIX</button>
+    </div>
+</div>
+
+<style>
+    body { font-family: 'Poppins', sans-serif; background:#f4f4f4; }
+    .container { background:white; padding:20px; border-radius:10px; width:90%; margin:30px auto; box-shadow:0 0 10px rgba(0,0,0,.1); }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th, td { border-bottom:1px solid #ddd; padding:8px; text-align:center; }
+    .status-pago { color:green; font-weight:600; }
+    .status-pendente { color:red; font-weight:600; }
+    .form input, .form select { padding:8px; margin:4px; border:1px solid #ccc; border-radius:5px; }
+</style>
+
+<script>
+    const qrcodeContainer = document.getElementById("qrcode");
+    const valorPixDiv = document.getElementById("valorPix");
+    const qrBox = document.getElementById("qrBox");
+    let ultimoCodigoPix = "";
+    const chavePix = "+5554996334128";
+    const nomeRecebedor = "Laisa Schneider Espindola";
+    const cidade = "SAO PAULO";
+
+    async function adicionarConta() {
+        const morador = document.getElementById("morador").value.trim();
+        const descricao = document.getElementById("descricao").value.trim();
+        const valor = document.getElementById("valor").value.trim();
+        const mes = document.getElementById("mes").value.trim();
+        const vencimento = document.getElementById("vencimento").value;
+
+        if (!morador || !descricao || !valor || !mes || !vencimento) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        const conta = { morador, descricao, valor, mes, vencimento, pago: false };
+
+        const resp = await fetch("/Conta/Adicionar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(conta)
+        });
+
+        const dados = await resp.json();
+        if (dados.sucesso) location.reload();
+        else alert("Erro ao salvar!");
+    }
+
+    async function marcarPago(id, botao) {
+        const resp = await fetch("/Conta/MarcarPago?id=" + id, { method: "POST" });
+        const dados = await resp.json();
+        if (dados.sucesso) {
+            const linha = botao.closest("tr");
+            linha.querySelector("td:nth-child(6)").textContent = "Pago";
+            linha.querySelector("td:nth-child(6)").className = "status-pago";
+        }
+    }
+
+    async function excluirConta(id, botao) {
+        const resp = await fetch("/Conta/Excluir?id=" + id, { method: "POST" });
+        const dados = await resp.json();
+        if (dados.sucesso) botao.closest("tr").remove();
+    }
+
+    function gerarQRCode(descricao, valor) {
+        qrcodeContainer.innerHTML = "";
+        qrBox.style.display = "block";
+        valorPixDiv.textContent = `💰 Valor do PIX: R$ ${valor.toFixed(2)}`;
+
+        const payload = gerarPayloadPix(chavePix, nomeRecebedor, cidade, valor.toFixed(2), descricao);
+        ultimoCodigoPix = payload;
+
+        new QRCode(qrcodeContainer, { text: payload, width: 200, height: 200 });
+    }
+
+    function copiarCodigo() {
+        navigator.clipboard.writeText(ultimoCodigoPix)
+            .then(() => alert("Código PIX copiado! ✅"));
+    }
+
+    function gerarPayloadPix(chave, nome, cidade, valor, descricao) {
+        function campo(id, valor) {
+            const tam = valor.length.toString().padStart(2, "0");
+            return id + tam + valor;
+        }
+
+        const gui = "BR.GOV.BCB.PIX";
+        const conta = campo("00", gui) + campo("01", chave);
+        const merchant = campo("26", conta);
+        const name = campo("59", nome);
+        const city = campo("60", cidade);
+        const val = campo("54", valor);
+        const txid = campo("05", descricao.substring(0, 10));
+        const ad = campo("62", txid);
+
+        const base = "000201" + merchant + campo("52", "0000") + campo("53", "986") + val + name + city + ad + "6304";
+        return base + gerarCRC16(base);
+    }
+
+    function gerarCRC16(payload) {
+        let polinomio = 0x1021, resultado = 0xFFFF;
+        for (let i = 0; i < payload.length; i++) {
+            resultado ^= payload.charCodeAt(i) << 8;
+            for (let j = 0; j < 8; j++) {
+                resultado = (resultado & 0x8000) ? (resultado << 1) ^ polinomio : resultado << 1;
+                resultado &= 0xFFFF;
+            }
+        }
+        return resultado.toString(16).toUpperCase().padStart(4, "0");
+    }
+</script>

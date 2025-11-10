@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using CondominioApp.Models;
-using System;
-using System.Collections.Generic;
-using login_e_cadastro.Models;
 
 namespace CondominioApp.Context
 {
@@ -10,8 +7,6 @@ namespace CondominioApp.Context
     {
         public CondominioContext(DbContextOptions<CondominioContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Morador> Moradores { get; set; }
-
+        public DbSet<ContaMensal> ContasMensais { get; set; }
     }
 }

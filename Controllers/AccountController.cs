@@ -1,88 +1,47 @@
 using Microsoft.AspNetCore.Mvc;
-using CondominioApp.Context;
 using CondominioApp.Models;
 
 namespace CondominioApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly CondominioContext _context;
-
-        public AccountController(CondominioContext context)
+        public IActionResult Login(string tipo)
         {
-            _context = context;
-        }
-
-        // =========================
-        // CADASTRO DE ADMIN (USUARIO)
-        // =========================
-        public IActionResult Register() => View();
-
-        [HttpPost]
-        public IActionResult Register(Usuario usuario)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Usuarios.Add(usuario);
-                _context.SaveChanges();
-                TempData["Mensagem"] = "Cadastro de administrador realizado com sucesso!";
-                return RedirectToAction("Login");
-            }
-            return View(usuario);
-        }
-
-        // =========================
-        // LOGIN
-        // =========================
-        public IActionResult Login() => View();
-
-        [HttpPost]
-        public IActionResult Login(string email, string senha)
-        {
-            // Tenta login como ADMIN (Usuario)
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
-            if (usuario != null)
-                return RedirectToAction("PainelAdm");
-
-            // Tenta login como MORADOR
-            var morador = _context.Moradores.FirstOrDefault(m => m.Email == email && m.Senha == senha);
-            if (morador != null)
-                return RedirectToAction("PainelUsuario");
-
-            ViewBag.Erro = "Email ou senha inválidos.";
+            ViewBag.Tipo = tipo; // mostra se é admin ou morador
             return View();
         }
 
-        // =========================
-        // PAINÉIS
-        // =========================
-        public IActionResult PainelAdm()
-        {
-            return Content("Painel do Administrador: Aqui você pode gerenciar o condomínio.");
-        }
-
-        public IActionResult PainelUsuario()
-        {
-            return Content("Painel do Morador: Aqui você vê boletos e avisos.");
-        }
-
-        // =========================
-        // CADASTRO DE MORADOR
-        // =========================
-        public IActionResult RegisterMorador() => View();
-
         [HttpPost]
-        public IActionResult RegisterMorador(Morador morador)
+        public IActionResult Login(string email, string senha, string tipo)
         {
-            if (ModelState.IsValid)
+            // ADMIN
+            if (tipo == "morador" && email == "admin@condominio.com" && senha == "1234")
             {
-                _context.Moradores.Add(morador);
-                _context.SaveChanges();
-                TempData["Mensagem"] = "Cadastro de morador realizado com sucesso!";
-                return RedirectToAction("Login");
+                return RedirectToAction("Index", "Conta");
             }
 
-            return View(morador);
+            // MORADOR
+            if (tipo == "visitante" && email == "morador@condominio.com" && senha == "1234")
+            {
+                return RedirectToAction("Index", "Conta");
+            }
+
+            ViewBag.Erro = "Email ou senha inválidos.";
+            ViewBag.Tipo = tipo;
+            return View();
+        }
+
+        public IActionResult Register(string tipo)
+        {
+            ViewBag.Tipo = tipo;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(Usuario usuario, string tipo)
+        {
+            TempData["Mensagem"] = "Cadastro simulado com sucesso.";
+            return RedirectToAction("Login", new { tipo = tipo });
         }
     }
 }

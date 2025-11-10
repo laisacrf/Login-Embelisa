@@ -117,21 +117,21 @@ body {
 }
 
 .btn-rosa {
-    background: #f4cfd7;
+    background: #dd909e;
     color: #3a2b2e;
 }
 
 .btn-rosa:hover {
-    background: #e7b4bd;
+    background: #ffa9b9;
 }
 
 .btn-cinza {
-    background: #f9f9f9;
-    border: 1px solid #e5e5e5;
+    background: #dd909e;
+    ;
 }
 
 .btn-cinza:hover {
-    background: #f0f0f0;
+    background: #ffa9b9;
 }
 
 /* RESPONSIVIDADE */
