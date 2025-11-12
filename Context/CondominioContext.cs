@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using CondominioApp.Models;
+using login_e_cadastro.Models; // ajusta se necessário
+using CondominioApp.Models; // já tem isso
 
 namespace CondominioApp.Context
 {
@@ -8,5 +9,6 @@ namespace CondominioApp.Context
         public CondominioContext(DbContextOptions<CondominioContext> options) : base(options) { }
 
         public DbSet<ContaMensal> ContasMensais { get; set; }
+        public DbSet<ClienteInadimplente> ClientesInadimplentes { get; set; } // <-- adiciona aqui
     }
 }

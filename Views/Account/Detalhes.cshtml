@@ -10,7 +10,7 @@
     <div class="details-box">
         <p><strong>Descrição:</strong> @Model.Descricao</p>
         <p><strong>Valor:</strong> R$ @Model.Valor.ToString("F2")</p>
-        <p><strong>Vencimento:</strong> @Model.DataVencimento.ToShortDateString()</p>
+        <p><strong>Vencimento:</strong> @Model.Vencimento.ToShortDateString()</p>
     </div>
 
     @if (string.IsNullOrEmpty(Model.PixCodigo))

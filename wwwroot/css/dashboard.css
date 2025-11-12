@@ -1,10 +1,12 @@
+/* ROOT E BODY */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #fef7fa;
+    background: linear-gradient(to bottom right, #ddc2d5, #fff5f3);
     color: #333;
 }
 
+/* CONTAINER PRINCIPAL */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
@@ -13,11 +15,12 @@ body {
 /* SIDEBAR */
 .sidebar {
     width: 260px;
-    background: linear-gradient(180deg, #ffb6d9 0%, #ff77b9 100%);
+    background: linear-gradient(180deg, #c48b9f 0%, #ddc2d5 100%);
     color: #fff;
     display: flex;
     flex-direction: column;
     padding: 25px 20px;
+    border-radius: 20px 0 0 20px;
 }
 
 .sidebar-header {
@@ -28,14 +31,16 @@ body {
 
 .sidebar-header .logo {
     background-color: #fff;
-    color: #ff69b4;
+    color: #c48b9f;
     font-weight: 700;
-    border-radius: 8px;
-    width: 40px;
-    height: 40px;
+    border-radius: 15px;
+    width: 45px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 24px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 .sidebar h2 {
@@ -56,15 +61,16 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    padding: 12px 14px;
+    border-radius: 15px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
 }
 
 .menu li:hover,
 .menu li.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
 }
 
 .menu li i {
@@ -81,30 +87,32 @@ body {
 /* MAIN AREA */
 .main-content {
     flex: 1;
-    background: #fff5f9;
+    background: #fffafc;
     display: flex;
     flex-direction: column;
+    border-radius: 0 20px 20px 0;
 }
 
+/* TOPBAR */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 40px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    border-radius: 0 0 16px 16px;
+    background: linear-gradient(90deg, #ffdbe6 0%, #ffc2d6 100%);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-radius: 0 20px 0 0;
 }
 
 .topbar-info h1 {
     margin: 0;
     font-size: 22px;
-    color: #333;
+    color: #3a2b2e;
 }
 
 .topbar-info p {
     margin: 4px 0 0;
-    color: #777;
+    color: #5a4a4a;
     font-size: 14px;
 }
 
@@ -118,12 +126,14 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #ff9ccf;
+    background-color: #c48b9f;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 .user-details strong {
@@ -133,30 +143,60 @@ body {
 
 .user-details span {
     font-size: 13px;
-    color: #888;
+    color: #777;
 }
 
-/* CONTENT */
+/* CONTENT AREA */
 .content-area {
+    flex: 1 1 auto;
     padding: 40px;
 }
+
+/* RELATÓRIO DE INADIMPLÊNCIA */
 .inadimplencia-relatorio {
-    background: #fff;
+    background: #fffafc;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
 .inadimplencia-relatorio h1 {
     text-align: center;
-    color: #e44f91;
+    color: #c48b9f;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 .inadimplencia-relatorio form button {
-    background-color: #e44f91;
+    background-color: #c48b9f;
+    color: #fff;
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.inadimplencia-relatorio form button:hover {
+    background-color: #ab758d;
 }
 
 .inadimplencia-relatorio table th {
-    background-color: #ff93c9;
+    background-color: #f4cfd7;
+    color: #3a2b2e;
+    font-weight: 600;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.inadimplencia-relatorio table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1eff1;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .sidebar { width: 200px; }
+    .topbar { padding: 20px; }
+    .content-area { padding: 25px; }
 }

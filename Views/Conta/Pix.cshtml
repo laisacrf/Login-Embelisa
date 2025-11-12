@@ -11,7 +11,7 @@
     <div class="info" style="margin:20px 0; text-align:left;">
         <p><strong>Descrição:</strong> @Model.Descricao</p>
         <p><strong>Valor:</strong> R$ @ViewBag.ValorPix</p>
-        <p><strong>Vencimento:</strong> @Model.DataVencimento.ToShortDateString()</p>
+        <p><strong>Vencimento:</strong> @Model.Vencimento.ToShortDateString()</p>
         <p><strong>Status:</strong> @(Model.Pago ? "✅ Pago" : "⏳ Pendente")</p>
     </div>
 

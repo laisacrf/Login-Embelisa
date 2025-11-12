@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\430465624\\Documents\\login e cadastro\\login e cadastro.csproj": {}
+    "C:\\Users\\430465624\\Documents\\Login-Embelisa\\login e cadastro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\430465624\\Documents\\login e cadastro\\login e cadastro.csproj": {
+    "C:\\Users\\430465624\\Documents\\Login-Embelisa\\login e cadastro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\430465624\\Documents\\login e cadastro\\login e cadastro.csproj",
+        "projectUniqueName": "C:\\Users\\430465624\\Documents\\Login-Embelisa\\login e cadastro.csproj",
         "projectName": "login e cadastro",
-        "projectPath": "C:\\Users\\430465624\\Documents\\login e cadastro\\login e cadastro.csproj",
+        "projectPath": "C:\\Users\\430465624\\Documents\\Login-Embelisa\\login e cadastro.csproj",
         "packagesPath": "C:\\Users\\430465624\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\430465624\\Documents\\login e cadastro\\obj\\",
+        "outputPath": "C:\\Users\\430465624\\Documents\\Login-Embelisa\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\430465624\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,25 +43,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameWorkCore.Design": {
+            "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.10, )"
-            },
-            "Microsoft.EntityFrameWorkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[8.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

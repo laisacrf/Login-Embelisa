@@ -1,12 +1,14 @@
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* BODY */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom right, #fce7ec, #fff5f3);
+    background: linear-gradient(to bottom right, #ddc2d5, #ddc2d5);
     color: #333;
     display: flex;
     justify-content: center;
@@ -14,6 +16,7 @@ body {
     min-height: 100vh;
 }
 
+/* CONTAINER */
 .container {
     text-align: center;
     max-width: 1100px;
@@ -25,31 +28,46 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 15px;
 }
 
 .logo-icone {
-    background: #f4cfd7;
-    color: #3a2b2e;
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
+    background: #c48b9f; /* rosa chique e moderno */
+    color: #fff;
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: all 0.3s ease;
 }
 
+.logo-icone:hover {
+    transform: rotate(15deg) scale(1.15);
+}
+
+/* Ícone do logo (ex: coração ou estrela FontAwesome) */
+.logo-icone::before {
+    content: "\f004"; /* Unicode FontAwesome heart */
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+}
+
+/* Título */
 .logo h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 46px;
+    font-size: 48px;
     color: #3a2b2e;
+    letter-spacing: 1px;
 }
 
 .subtitulo {
     font-weight: 500;
     font-size: 20px;
-    color: #4a4a4a;
+    color: #5a4a4a;
     margin-top: 10px;
 }
 
@@ -63,80 +81,145 @@ body {
 }
 
 .card {
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background: #fffafc;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
     width: 350px;
-    padding: 40px 25px;
-    transition: all 0.3s ease;
+    padding: 40px 30px;
+    transition: all 0.4s ease;
     cursor: pointer;
-    text-align: center; /* garante que textos fiquem centralizados */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 220%;
+    height: 220%;
+    background: rgba(196,139,159,0.05); /* rosa transparente elegante */
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.card:hover::before {
+    transform: rotate(0deg);
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
 .card-icone {
-    background: #f4cfd7;
-    color: #3a2b2e;
-    width: 70px;
-    height: 70px;
-    border-radius: 15px;
+    background: #c48b9f; /* rosa moderno */
+    color: #fff;
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ícones dos cards (ex: FontAwesome) */
+.card-icone::before {
+    content: "\f007"; /* unicode user icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.card-icone:hover {
+    transform: scale(1.2) rotate(-10deg);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.18);
 }
 
 .card h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: #1c1c1c;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 15px;
+    color: #6b5a5a;
+    margin-bottom: 25px;
+    line-height: 1.6;
 }
 
 /* BOTÕES */
 .btn {
     border: none;
-    border-radius: 12px;
-    padding: 12px 25px;
-    font-size: 15px;
+    border-radius: 15px;
+    padding: 14px 30px;
+    font-size: 16px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .btn-rosa {
-    background: #dd909e;
-    color: #3a2b2e;
+    background: #c48b9f;
+    color: #fff;
+}
+
+.btn-rosa::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.btn-rosa:hover::after {
+    width: 100%;
 }
 
 .btn-rosa:hover {
-    background: #ffa9b9;
+    background: #ab758d;
+    color: #fff;
 }
 
 .btn-cinza {
-    background: #dd909e;
-    ;
+    background: #c48b9f;
+    color:#fff;
 }
 
 .btn-cinza:hover {
-    background: #ffa9b9;
+    background: #ab758d;
+}
+
+/* ICONES INTERNOS */
+i {
+    margin-right: 8px;
 }
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .card {
         width: 90%;
+    }
+
+    .logo h1 {
+        font-size: 38px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
     }
 }

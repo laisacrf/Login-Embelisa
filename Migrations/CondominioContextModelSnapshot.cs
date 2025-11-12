@@ -15,16 +15,13 @@ namespace login_e_cadastro.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("CondominioApp.Models.ContaMensal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -45,74 +42,19 @@ namespace login_e_cadastro.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PixId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Vencimento")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("ContasMensais");
-                });
-
-            modelBuilder.Entity("CondominioApp.Models.Morador", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NumeroApartamento")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Moradores");
-                });
-
-            modelBuilder.Entity("CondominioApp.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }
